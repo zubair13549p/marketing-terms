@@ -1,0 +1,133 @@
+/* Basic friendly styles */
+* { box-sizing: border-box; }
+:root {
+  --bg: #f7f8fc;
+  --card: #ffffff;
+  --text: #222;
+  --muted: #667085;
+  --primary: #2563eb;
+  --shadow: 0 10px 25px rgba(0,0,0,0.07);
+  --radius: 16px;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.container {
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 32px;
+}
+
+.card {
+  background: var(--card);
+  width: 100%;
+  max-width: 520px;
+  padding: 28px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+h1 { margin: 0 0 8px; }
+.muted { color: var(--muted); margin: 0 0 16px; }
+
+input[type="text"] {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  outline: none;
+  font-size: 16px;
+}
+
+button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+
+button:hover { filter: brightness(0.95); }
+.error { color: #b91c1c; margin-top: 8px; min-height: 22px; }
+
+.help { margin-top: 12px; }
+
+/* App styles */
+.appbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  background: #111827;
+  color: #e5e7eb;
+}
+
+.appbar .actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.main {
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.search-box {
+  background: var(--card);
+  padding: 16px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 16px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 16px;
+}
+
+.hint { color: var(--muted); margin-top: 8px; font-size: 14px; }
+
+.results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.term {
+  background: var(--card);
+  padding: 16px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.term h3 {
+  margin: 0 0 6px;
+  font-size: 18px;
+}
+
+.term p {
+  margin: 0;
+  color: #374151;
+  line-height: 1.4;
+}
+
+.footer {
+  padding: 20px;
+  text-align: center;
+  color: var(--muted);
+}
