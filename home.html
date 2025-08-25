@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marketing Terms • Portal</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="appbar">
+    <h1>Marketing Management Terms</h1>
+    <div class="actions">
+      <span id="welcome"></span>
+      <button id="logoutBtn" title="Logout">Logout</button>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="search-box">
+      <input type="text" id="searchBox" placeholder="Search a marketing term (e.g., AIDA, Segmentation, Brand)..." />
+      <div class="hint">Tip: You can search by term or words inside the definition.</div>
+    </div>
+
+    <div id="stats" class="muted"></div>
+    <div id="results" class="results"></div>
+  </main>
+
+  <footer class="footer">
+    <small>© 2025 Marketing Portal • For educational use</small>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+  <!-- Term Detail Modal -->
+  <div id="termModal" class="modal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button id="closeModal" class="close" aria-label="Close">&times;</button>
+      <h2 id="modalTitle"></h2>
+      <p id="modalDefinition"></p>
+    </div>
+  </div>
+
+</body>
+</html>
