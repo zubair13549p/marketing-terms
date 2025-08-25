@@ -2,7 +2,10 @@
 
 // 1) Allowed Student IDs (edit this list)
 const validIds = [
-  "SSBN257201", "SSBN257202", "SSBN257203", "SSBN257204", "SSBN257205", "SSBN257206", "SSBN257207", "SSBN257208", "SSBN257209", "SSBN257210", "SSBN257211", "SSBN257212", "SSBN257213", "SSBN25714", "SSBN257215", "SSBN257216", "SSBN257217", "SSBN257218", "SSBN257219", "SSBN257220",
+  "SSBN257201", "SSBN257202", "SSBN257203", "SSBN257204", "SSBN257205", 
+  "SSBN257206", "SSBN257207", "SSBN257208", "SSBN257209", "SSBN257210",
+  "SSBN257211", "SSBN257212", "SSBN257213", "SSBN257214", "SSBN257215",
+  "SSBN257216", "SSBN257217", "SSBN257218", "SSBN257219", "SSBN257220"
 ];
 
 // 2) Handle Login
@@ -37,7 +40,7 @@ function checkLogin() {
   }
 }
 
-// 4) Search
+// 4) Search + render
 function renderResults(items) {
   const results = document.getElementById("results");
   const stats = document.getElementById("stats");
@@ -45,7 +48,7 @@ function renderResults(items) {
 
   results.innerHTML = "";
   if (items.length === 0) {
-    results.innerHTML = "<p class=\"muted\">No results found.</p>";
+    results.innerHTML = "<p class='muted'>No results found.</p>";
     if (stats) stats.textContent = "";
     return;
   }
@@ -53,7 +56,13 @@ function renderResults(items) {
   items.forEach(t => {
     const div = document.createElement("div");
     div.className = "term";
-    div.innerHTML = `<h3>${t.word}</h3><p>${t.definition}</p>`;
+    div.innerHTML = `<h3>${t.word}</h3>`;
+
+    // When clicked, open modal with details
+    div.addEventListener("click", () => {
+      openModal(t.word, t.definition);
+    });
+
     results.appendChild(div);
   });
 
@@ -73,20 +82,51 @@ function searchTerm(query) {
   renderResults(filtered);
 }
 
-// 5) Wire up events depending on page
+// 5) Modal functions
+function openModal(word, definition) {
+  const modal = document.getElementById("termModal");
+  const title = document.getElementById("modalTitle");
+  const body = document.getElementById("modalDefinition");
+  if (!modal || !title || !body) return;
+
+  title.textContent = word;
+  body.textContent = definition;
+  modal.classList.add("show");
+}
+
+function closeModal() {
+  const modal = document.getElementById("termModal");
+  if (modal) modal.classList.remove("show");
+}
+
+// 6) Wire up events depending on page
 document.addEventListener("DOMContentLoaded", () => {
   const path = location.pathname.toLowerCase();
   if (path.endsWith("home.html")) {
     checkLogin();
     const input = document.getElementById("searchBox");
     const logoutBtn = document.getElementById("logoutBtn");
+
     if (input) {
       input.addEventListener("input", () => searchTerm());
-      // Show all terms by default:
-      renderResults(terms);
+      renderResults(terms); // show all terms by default
     }
     if (logoutBtn) {
       logoutBtn.addEventListener("click", logout);
+    }
+
+    // Modal close handlers
+    const closeBtn = document.getElementById("closeModal");
+    const modalEl = document.getElementById("termModal");
+
+    if (closeBtn) closeBtn.addEventListener("click", closeModal);
+    if (modalEl) {
+      modalEl.addEventListener("click", (e) => {
+        if (e.target === modalEl) closeModal();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeModal();
+      });
     }
   } else {
     const form = document.getElementById("loginForm");
