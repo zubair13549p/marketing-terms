@@ -131,3 +131,33 @@ button:hover { filter: brightness(0.95); }
   text-align: center;
   color: var(--muted);
 }
+/* ----- Term detail modal ----- */
+.modal {
+  display: none;                 /* hidden by default */
+  position: fixed;
+  inset: 0;                      /* top:0 right:0 bottom:0 left:0 */
+  background: rgba(0,0,0,0.55);  /* semi-transparent black overlay */
+  z-index: 1000;                 /* show above everything */
+}
+
+.modal.show { display: block; }  /* show when we add class="show" */
+
+.modal-content {
+  background: var(--card);
+  max-width: 720px;
+  margin: 10vh auto;             /* center modal */
+  padding: 24px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.close {
+  background: transparent;
+  border: 0;
+  font-size: 28px;
+  cursor: pointer;
+  float: right;
+  color: #555;
+}
+
+.close:hover { color: black; }
